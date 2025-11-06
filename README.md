@@ -1,5 +1,3 @@
-# phuket-presets-showcase
-Product showcase for Phuket Film Presets.
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +8,12 @@ Product showcase for Phuket Film Presets.
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Muted Cinematic (Warm Neutrals, Desaturated Teal/Brown Accents) -->
-    <!-- Application Structure Plan: The SPA is a high-conversion product landing page. It follows a vertical flow: Value Proposition -> Interactive Before/After Showcase -> Quantitative Feature Breakdown -> AI Feature -> Local Expertise USP. -->
+    <!-- Application Structure Plan: The SPA is a high-conversion product landing page. It follows a vertical flow: Value Proposition -> Interactive Before/After Showcase -> Quantitative Feature Breakdown -> AI Feature 1 (Aesthetics) -> AI Feature 2 (Tips) -> Local Expertise USP. -->
     <!-- Visualization & Content Choices: 
     1. Aesthetic Shift (Before/After). Interactive Slider/Toggle.
     2. Preset 'Recipe' (Grain, Contrast, Tones). Horizontal Bar Chart using Chart.js.
-    3. AI Feature: Uses Gemini API (gemini-2.5-flash-preview-09-2025) to generate a descriptive film aesthetic suggestion based on user input.
+    3. AI Feature 1: Uses Gemini API (gemini-2.5-flash-preview-09-2025) to generate a descriptive film aesthetic suggestion based on user input scene.
+    4. AI Feature 2: Uses Gemini API (gemini-2.5-flash-preview-09-2025) to generate a Phuket-specific photography tip based on user challenge.
     -->
     <style>
         body {
@@ -106,8 +105,8 @@ Product showcase for Phuket Film Presets.
                 </div>
             </section>
 
-            <!-- Gemini AI Integration: Film Storyteller AI -->
-            <section id="gemini-feature" class="bg-amber-50 p-6 md:p-8 rounded-xl shadow-xl border-4 border-amber-300">
+            <!-- Gemini AI Integration 1: Film Storyteller AI -->
+            <section id="gemini-feature-1" class="bg-amber-50 p-6 md:p-8 rounded-xl shadow-xl border-4 border-amber-300">
                 <h2 class="text-3xl font-bold text-amber-900 mb-4">✨ Film Storyteller AI</h2>
                 <p class="text-stone-700 mb-6">
                     Describe the scene or story you want to capture (e.g., "Golden hour portrait near a fishing boat," or "Moody street food scene in the rain"). Our AI will instantly suggest the perfect vintage film aesthetic for your image.
@@ -116,27 +115,52 @@ Product showcase for Phuket Film Presets.
                 <textarea id="sceneInput" rows="3" class="w-full p-3 border-2 border-stone-300 rounded-lg focus:border-amber-500 transition-all text-stone-800" placeholder="Describe your photo here..."></textarea>
 
                 <button id="suggestButton" class="w-full bg-amber-700 text-white font-bold py-3 mt-4 rounded-lg text-lg shadow-md hover:bg-amber-800 transition-colors flex items-center justify-center">
-                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" id="loadingSpinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" id="loadingSpinner1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                     ✨ Suggest Vintage Film Look
                 </button>
                 
-                <div id="resultOutput" class="mt-6 p-4 bg-white rounded-lg border-2 border-stone-200 text-stone-800 hidden">
+                <div id="resultOutput1" class="mt-6 p-4 bg-white rounded-lg border-2 border-stone-200 text-stone-800 hidden">
                     <h4 class="font-bold text-lg mb-2 text-amber-900">Suggested Film Aesthetic:</h4>
-                    <p id="suggestionText" class="text-stone-700 italic"></p>
-                    <p id="suggestionSource" class="text-xs text-stone-500 mt-2"></p>
+                    <p id="suggestionText1" class="text-stone-700 italic"></p>
+                    <p id="suggestionSource1" class="text-xs text-stone-500 mt-2"></p>
                 </div>
             </section>
-            <!-- End Gemini AI Integration -->
+            <!-- End Gemini AI Integration 1 -->
 
 
+            <!-- Gemini AI Integration 2: Local Photography Tip AI (Targeted Section) -->
             <section id="island-tested" class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-stone-200">
                 <h2 class="text-3xl font-bold text-amber-900 mb-6">Island-Tested Expertise</h2>
                 <p class="text-stone-600 mb-4">
                     The core value you're purchasing is **local expertise**. I'm a photographer and visual storyteller based right here on Phuket Island. These presets haven't just been created—they have been perfected under the unique, challenging, and vibrant lighting of the Andaman region.
                 </p>
+
+                <div id="gemini-feature-2" class="bg-teal-50 p-5 rounded-xl shadow-md border-2 border-teal-300 mb-8">
+                    <h3 class="text-2xl font-bold text-teal-800 mb-3">✨ Local Photography Tip AI</h3>
+                    <p class="text-stone-700 mb-4 text-sm">
+                        Facing a difficult shoot condition in Phuket? Ask our AI for a pro tip (e.g., "how to shoot Kata Beach at noon," or "dealing with low-light temples").
+                    </p>
+
+                    <input type="text" id="tipInput" class="w-full p-2 border border-stone-300 rounded-lg focus:border-teal-500 transition-all text-stone-800" placeholder="Ask for a Phuket photography tip...">
+
+                    <button id="tipButton" class="w-full bg-teal-700 text-white font-bold py-2 mt-3 rounded-lg text-md shadow-md hover:bg-teal-800 transition-colors flex items-center justify-center">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" id="loadingSpinner2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Get Pro Tip
+                    </button>
+                    
+                    <div id="resultOutput2" class="mt-4 p-3 bg-white rounded-lg border-2 border-stone-200 text-stone-800 hidden">
+                        <h4 class="font-bold text-md mb-1 text-teal-800">Pro Tip:</h4>
+                        <p id="tipText" class="text-stone-700 text-sm"></p>
+                    </div>
+                </div>
+                <!-- End Gemini AI Integration 2 -->
+
                 <div class="grid md:grid-cols-3 gap-6 mt-6">
                     <div class="p-4 bg-amber-50 rounded-lg border border-amber-200 text-center">
                         <p class="text-2xl mb-1">☀️</p>
@@ -172,6 +196,87 @@ Product showcase for Phuket Film Presets.
             const beforeBox = document.getElementById('before-box');
             const afterBox = document.getElementById('after-box');
             const descriptionOutput = document.getElementById('description-output');
+            
+            // --- Helper Functions ---
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            /**
+             * Handles common fetch logic with exponential backoff.
+             */
+            async function callGeminiApi(systemPrompt, userQuery) {
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    tools: [{ "google_search": {} }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                };
+
+                let response = null;
+                let retries = 0;
+                const maxRetries = 5;
+
+                while (retries < maxRetries) {
+                    try {
+                        const fetchResponse = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (fetchResponse.status === 429) {
+                            const delay = Math.pow(2, retries) * 1000;
+                            retries++;
+                            console.warn(`Rate limit hit. Retrying in ${delay}ms...`);
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            continue;
+                        }
+
+                        if (!fetchResponse.ok) {
+                            throw new Error(`API request failed with status: ${fetchResponse.status}`);
+                        }
+
+                        response = await fetchResponse.json();
+                        break;
+
+                    } catch (error) {
+                        console.error("Fetch error:", error);
+                        throw new Error("Failed to connect to the AI service.");
+                    }
+                }
+
+                if (!response) {
+                    throw new Error("Maximum retries reached or request failed.");
+                }
+                
+                const candidate = response.candidates?.[0];
+                const text = candidate?.content?.parts?.[0]?.text;
+
+                if (!text) {
+                     throw new Error("AI generated an empty or malformed response.");
+                }
+
+                // Extract grounding sources
+                let sources = [];
+                const groundingMetadata = candidate.groundingMetadata;
+                if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                    sources = groundingMetadata.groundingAttributions
+                        .map(attribution => ({
+                            uri: attribution.web?.uri,
+                            title: attribution.web?.title,
+                        }))
+                        .filter(source => source.uri && source.title);
+                }
+
+                const sourcesHtml = sources.length > 0
+                    ? '<span class="font-medium">Sources:</span> ' + sources.map(s => `<a href="${s.uri}" target="_blank" class="hover:underline text-amber-600">${s.title}</a>`).join(', ')
+                    : '';
+
+                return { text, sourcesHtml };
+            }
+
+            // --- UI/UX Logic ---
 
             function updateLook(value) {
                 const normalized = value / 100; 
@@ -208,6 +313,8 @@ Product showcase for Phuket Film Presets.
             });
 
             updateLook(100); 
+
+            // --- Chart Logic ---
 
             const ctx = document.getElementById('presetChart').getContext('2d');
             const presetChart = new Chart(ctx, {
@@ -265,112 +372,18 @@ Product showcase for Phuket Film Presets.
             });
 
 
-            // --- GEMINI API INTEGRATION ---
+            // --- GEMINI API INTEGRATION 1: Film Storyteller AI ---
             const suggestButton = document.getElementById('suggestButton');
-            const loadingSpinner = document.getElementById('loadingSpinner');
+            const loadingSpinner1 = document.getElementById('loadingSpinner1');
             const sceneInput = document.getElementById('sceneInput');
-            const resultOutput = document.getElementById('resultOutput');
-            const suggestionText = document.getElementById('suggestionText');
-            const suggestionSource = document.getElementById('suggestionSource');
-
-            // Mandatory Firebase Setup (required boilerplate)
-            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-
-            // API Configuration
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
-            /**
-             * Generates a preset suggestion using the Gemini API.
-             * Implements exponential backoff for retries.
-             */
-            async function generatePresetSuggestion(sceneDescription) {
-                // System Prompt: Acts as a film photography consultant to guide the AI's response.
-                const systemPrompt = "You are a world-class vintage film photography consultant specializing in Lightroom presets. Analyze the user's scene description and provide a concise (2-3 sentences), highly descriptive suggestion for the required film aesthetic, focusing on tones, grain, contrast, and overall mood. Do NOT use markdown formatting (like ** or *). Do NOT mention the word 'Lightroom' or 'preset'.";
-                const userQuery = `Analyze this photo scene and suggest the ideal vintage film look: "${sceneDescription}"`;
-
-                const payload = {
-                    contents: [{ parts: [{ text: userQuery }] }],
-                    // Use Google Search to ground the response for real-world context
-                    tools: [{ "google_search": {} }],
-                    systemInstruction: {
-                        parts: [{ text: systemPrompt }]
-                    },
-                };
-
-                let response = null;
-                let retries = 0;
-                const maxRetries = 5;
-
-                while (retries < maxRetries) {
-                    try {
-                        const fetchResponse = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (fetchResponse.status === 429) {
-                            // Too many requests - implement exponential backoff
-                            const delay = Math.pow(2, retries) * 1000;
-                            retries++;
-                            console.warn(`Rate limit hit. Retrying in ${delay}ms...`);
-                            await new Promise(resolve => setTimeout(resolve, delay));
-                            continue; // Retry the loop
-                        }
-
-                        if (!fetchResponse.ok) {
-                            throw new Error(`API request failed with status: ${fetchResponse.status}`);
-                        }
-
-                        response = await fetchResponse.json();
-                        break; // Success, exit loop
-
-                    } catch (error) {
-                        console.error("Fetch error:", error);
-                        // Non-rate limit errors are usually fatal for this context
-                        throw new Error("Failed to connect to the AI service.");
-                    }
-                }
-
-                if (!response) {
-                    throw new Error("Maximum retries reached or request failed.");
-                }
-                
-                const candidate = response.candidates?.[0];
-                const text = candidate?.content?.parts?.[0]?.text;
-
-                if (!text) {
-                     throw new Error("AI generated an empty or malformed response.");
-                }
-
-                // Extract grounding sources (if used)
-                let sourcesHtml = '';
-                const groundingMetadata = candidate.groundingMetadata;
-                if (groundingMetadata && groundingMetadata.groundingAttributions) {
-                    const sources = groundingMetadata.groundingAttributions
-                        .map(attribution => ({
-                            uri: attribution.web?.uri,
-                            title: attribution.web?.title,
-                        }))
-                        .filter(source => source.uri && source.title);
-
-                    if (sources.length > 0) {
-                        sourcesHtml = '<span class="font-medium">Sources:</span> ' + sources.map(s => `<a href="${s.uri}" target="_blank" class="hover:underline text-amber-600">${s.title}</a>`).join(', ');
-                    }
-                }
-
-                return { text, sourcesHtml };
-            }
-
+            const resultOutput1 = document.getElementById('resultOutput1');
+            const suggestionText1 = document.getElementById('suggestionText1');
+            const suggestionSource1 = document.getElementById('suggestionSource1');
 
             suggestButton.addEventListener('click', async () => {
                 const scene = sceneInput.value.trim();
                 if (scene === '') {
-                    // Using console instead of alert()
                     console.error('Validation Error: Please describe your photo scene first!');
-                    // Provide visual feedback for the user without an alert box
                     sceneInput.classList.add('border-red-500');
                     setTimeout(() => sceneInput.classList.remove('border-red-500'), 2000);
                     return;
@@ -378,30 +391,80 @@ Product showcase for Phuket Film Presets.
 
                 // UI state: Loading
                 suggestButton.disabled = true;
-                loadingSpinner.classList.remove('hidden');
-                resultOutput.classList.remove('bg-red-100', 'border-red-500', 'border-stone-200');
-                resultOutput.classList.add('border-amber-500', 'hidden');
-                suggestionText.textContent = '';
-                suggestionSource.textContent = '';
+                loadingSpinner1.classList.remove('hidden');
+                resultOutput1.classList.remove('bg-red-100', 'border-red-500', 'border-stone-200');
+                resultOutput1.classList.add('border-amber-500', 'hidden');
+                suggestionText1.textContent = '';
+                suggestionSource1.textContent = '';
                 
                 try {
-                    const { text, sourcesHtml } = await generatePresetSuggestion(scene);
+                    const systemPrompt = "You are a world-class vintage film photography consultant specializing in visual aesthetics. Analyze the user's scene description and provide a concise (2-3 sentences), highly descriptive suggestion for the required film aesthetic, focusing on tones, grain, contrast, and overall mood. Do NOT use markdown formatting (like ** or *). Do NOT mention the word 'Lightroom' or 'preset'.";
+                    const userQuery = `Analyze this photo scene and suggest the ideal vintage film look: "${scene}"`;
+
+                    const { text, sourcesHtml } = await callGeminiApi(systemPrompt, userQuery);
                     
-                    suggestionText.textContent = text;
-                    suggestionSource.innerHTML = sourcesHtml;
-                    resultOutput.classList.remove('hidden', 'border-amber-500');
-                    resultOutput.classList.add('border-stone-200');
+                    suggestionText1.textContent = text;
+                    suggestionSource1.innerHTML = sourcesHtml;
+                    resultOutput1.classList.remove('hidden', 'border-amber-500');
+                    resultOutput1.classList.add('border-stone-200');
 
                 } catch (error) {
-                    console.error("AI Generation Error:", error);
-                    suggestionText.textContent = `Error: ${error.message}. Please try again.`;
-                    resultOutput.classList.remove('hidden', 'border-amber-500');
-                    resultOutput.classList.add('bg-red-100', 'border-red-500');
+                    console.error("AI Generation Error (Aesthetic):", error);
+                    suggestionText1.textContent = `Error: ${error.message}. Please try again.`;
+                    resultOutput1.classList.remove('hidden', 'border-amber-500');
+                    resultOutput1.classList.add('bg-red-100', 'border-red-500');
 
                 } finally {
                     // UI state: Complete
                     suggestButton.disabled = false;
-                    loadingSpinner.classList.add('hidden');
+                    loadingSpinner1.classList.add('hidden');
+                }
+            });
+
+
+            // --- GEMINI API INTEGRATION 2: Local Photography Tip AI ---
+            const tipButton = document.getElementById('tipButton');
+            const loadingSpinner2 = document.getElementById('loadingSpinner2');
+            const tipInput = document.getElementById('tipInput');
+            const resultOutput2 = document.getElementById('resultOutput2');
+            const tipText = document.getElementById('tipText');
+
+            tipButton.addEventListener('click', async () => {
+                const challenge = tipInput.value.trim();
+                if (challenge === '') {
+                    console.error('Validation Error: Please ask for a photography tip first!');
+                    tipInput.classList.add('border-red-500');
+                    setTimeout(() => tipInput.classList.remove('border-red-500'), 2000);
+                    return;
+                }
+
+                // UI state: Loading
+                tipButton.disabled = true;
+                loadingSpinner2.classList.remove('hidden');
+                resultOutput2.classList.remove('bg-red-100', 'border-red-500', 'border-stone-200');
+                resultOutput2.classList.add('border-teal-500', 'hidden');
+                tipText.textContent = '';
+                
+                try {
+                    const systemPrompt = "You are an experienced photographer based in Phuket, Thailand. Provide a concise, professional, and practical photography tip (1-2 sentences) tailored to the user's specific challenge, referencing the local environment (e.g., intense sun, specific locations like temples or beaches). Focus on camera settings, gear, or composition. Do NOT use markdown formatting (like ** or *).";
+                    const userQuery = `Provide a photography tip for this Phuket-related challenge: "${challenge}"`;
+
+                    const { text } = await callGeminiApi(systemPrompt, userQuery);
+                    
+                    tipText.textContent = text;
+                    resultOutput2.classList.remove('hidden', 'border-teal-500');
+                    resultOutput2.classList.add('border-stone-200');
+
+                } catch (error) {
+                    console.error("AI Generation Error (Tip):", error);
+                    tipText.textContent = `Error: ${error.message}. Please try again.`;
+                    resultOutput2.classList.remove('hidden', 'border-teal-500');
+                    resultOutput2.classList.add('bg-red-100', 'border-red-500');
+
+                } finally {
+                    // UI state: Complete
+                    tipButton.disabled = false;
+                    loadingSpinner2.classList.add('hidden');
                 }
             });
         });
